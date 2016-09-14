@@ -190,7 +190,7 @@ function sistemaEcuaciones(raiz, con, tam) {
 		sistema[i][0] = 1 * Math.pow(raiz[0], con[i][0]);
 		var k = 1;
 		for ( j = 1; j < tam; j++) {
-			if (raiz[j] != raiz[j - 1]) {
+			if (raiz[i] != raiz[j - 1]) {
 				sistema[i][j] = 1 * Math.pow(raiz[j], con[i][0]);
 			} else {
 				sistema[i][j] = 1 * Math.pow(raiz[j], con[i][0]) * Math.pow(con[i][0], k);
