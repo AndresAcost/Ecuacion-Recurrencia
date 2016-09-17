@@ -16,6 +16,7 @@ var Raices = {
     },
     encontrarDivisores: function(Pn) {
         var divisores = new Array()
+        Pn = Math.abs(Pn)//Saco Valor Absoluto
         for (var i = 0; i < Pn; i++) {
 
             if (Pn % i === 0) {
@@ -40,6 +41,7 @@ var Raices = {
         }
         return contador
     },
+    //rufinni
     esRaiz: function(divisor, coefPolinomio) {
         var orden = coefPolinomio.length - 1
         var coefResiduo = new Array(orden)
