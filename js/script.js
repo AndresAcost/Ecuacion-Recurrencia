@@ -177,6 +177,10 @@ function calcular() {
     coeficientes = convertirStringANumeros(coeficientes)
     console.log("coeficientes", coeficientes)
     var raices = Raices.calcular(coeficientes)
+    if(raices.length === 0){
+      window.alert("Las raices del polinomio no son reales.")
+      return
+    }
     console.log("raices", raices)
     valoresIniciales = convertirStringANumeros(valoresIniciales)
     console.log("valoresIniciales", valoresIniciales)
@@ -190,6 +194,10 @@ function calcular() {
     window.vi = valoresIniciales
     window.mcc = matrizCoefConstantes
     window.ac = arregloConstantes
+
+    var contenedorRespuesta = document.getElementById('soluciongen')
+    var texto = construirTextoEcuacionRecurrencia(raices, arregloConstantes)
+    contenedorRespuesta.innerHTML = texto
 }
 
 function calcularMatrizCoefConstantes(valoresIniciales, raices) {
@@ -230,4 +238,23 @@ function calcularMatrizParticular(indice, matrizCoefConstantes, valoresIniciales
         matrizParticular[i] = filaParticular
     }
     return matrizParticular
+}
+
+function construirTextoEcuacionRecurrencia(raices, arregloConstantes) {
+    var texto = 'Fn = '
+    for (var i = 0; i < raices.length; i++) {
+        var retroceso = 1
+        while (raices[i] == raices[i - retroceso]) {
+            retroceso++
+        }
+        var exponente = retroceso - 1
+        if (exponente > 0) {
+          texto += ' n^' + exponente + ' * '
+        }
+        texto += arregloConstantes[i] + ' (' + raices[i] + ')^n '
+        if (i < raices.length - 1) {
+            texto += ' + ';
+        }
+    }
+  return texto
 }
